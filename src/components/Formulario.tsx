@@ -11,7 +11,7 @@ interface FormularioProps {
 
 export default function Formulario({ cliente, cancelado, clienteAlterado }: FormularioProps) {
     const [name, setName] = useState(cliente?.nome ?? '')
-    const [age, setAge] = useState(cliente?.idade ?? 0)
+    const [age, setAge] = useState(cliente?.idade ?? '')
 
     const id = cliente?.id
 
@@ -35,13 +35,13 @@ export default function Formulario({ cliente, cancelado, clienteAlterado }: Form
                 text="Idade"
                 type='number'
                 value={age}
-                onChange={e => setAge(+(e.target as HTMLInputElement).value)}
+                onChange={e => setAge((e.target as HTMLInputElement).value)}
             />
             <div className="flex justify-end mt-7">
                 <Botao
                     color="blue"
                     className="mr-2"
-                    onClick={() => clienteAlterado?.(new Cliente(name, age, Number(id)))}
+                    onClick={() =>clienteAlterado?.(new Cliente(name,age, id, cliente.idNumerico))}
                 >
                     {id ? 'Alterar' : 'Salvar'}
                 </Botao>
