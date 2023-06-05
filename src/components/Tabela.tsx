@@ -25,12 +25,12 @@ export default function Tabela({ clientes, clienteSelecionado, clienteExcluido }
 
     function renderizarDados() {
         return clientes?.map((cliente, i) => {
-            console.log(cliente.numericId)
+            console.log(cliente.idNumerico)
             console.log(cliente)
             return (
                 <tr key={cliente.id} className={`${i % 2 === 0 ? 'bg-purple-200' : 'bg-purple-100'}`}>
                     <td className="text-left p-4">{cliente.id}</td>  
-                    <td className="text-left p-4">{cliente.numericId}</td>
+                    <td className="text-left p-4">{cliente.idNumerico}</td>
                     <td className="text-left p-4">{cliente.nome}</td>
                     <td className="text-left p-4">{cliente.idade}</td>
                     {exibirAcoes ? renderizarAcoes(cliente) : false}

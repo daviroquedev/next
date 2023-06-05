@@ -19,28 +19,33 @@ export default class ColecaoCliente implements ClienteRepositorio {
         toFirestore(cliente: Cliente) {
             return {
                 nome: cliente.nome,
-                idade: cliente.idade
+                idade: cliente.idade,
+                idNumerico: cliente.idNumerico
             }
         },
 
         fromFirestore(snapshot: QueryDocumentSnapshot, options: SnapshotOptions): Cliente {
             const dados = snapshot.data(options)
-            return new Cliente(dados.nome, dados.idade, snapshot.id)
+            return new Cliente(dados.nome, dados.idade, snapshot.id, dados.idNumerico)
         }
     }
 
     async salvar(cliente: Cliente): Promise<Cliente> {
         if (cliente?.id) {
-            await setDoc(doc(collection(db, 'clientes').withConverter(this.#conversor), cliente.id), cliente)
-
-            return cliente
+          await setDoc(doc(collection(db, 'clientes').withConverter(this.#conversor), cliente.id), cliente);
+          return cliente;
         } else {
-            const docRef = await addDoc(collection(db, 'clientes').withConverter(this.#conversor), cliente)
-            const doc = await getDoc(docRef)
-
-            return doc.data()
+          const querySnapshot = await getDocs(collection(db, 'clientes'));
+          const idNumerico = querySnapshot.size + 1;
+    
+          cliente.idNumerico = idNumerico;
+    
+          const docRef = await addDoc(collection(db, 'clientes').withConverter(this.#conversor), cliente);
+          const docSnapshot = await getDoc(docRef);
+    
+          return docSnapshot.data();
         }
-    }
+      }
 
     async excluir(cliente: Cliente): Promise<void> {
         return deleteDoc(doc(collection(db, 'clientes').withConverter(this.#conversor), cliente.id))
