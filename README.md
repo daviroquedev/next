@@ -21,10 +21,4 @@ NEXT_PUBLIC_FIREBASE_API_KEY = Chave da sua API do seu projeto do Firebase
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN = Domínio de autenticação do seu projeto do Firebase
 NEXT_PUBLIC_FIREBASE_PROJECT_ID = Id do seu projeto do Firebase
 # Execute a aplicação
-yarn dev
-#Agora basta acessa-la
-```
-
-<div align="center">
-  <small>Desenvolvido por Vitório Gomes - Dezembro/2022</small>
-</div>
+npm run dev
