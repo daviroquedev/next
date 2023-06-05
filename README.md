@@ -1,7 +1,7 @@
 # Next CRUD
 CRUD de usuários com Next e Firestore. Feito durante o curso de Next.js & React da Cod3r.
 
-![cover](public/images/home.png)
+![image](https://github.com/daviroquedev/next/assets/101668192/cd6aebbc-8694-40b9-9f0a-7462d53e2125)
 
 ## ✨ Tecnologias
 React | Next | TypeScript | TailwindCSS | Firebase
